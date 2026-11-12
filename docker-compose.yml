@@ -1,0 +1,13 @@
+services:
+  homeassistant:
+    container_name: ha-vandebron-dev
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      # Home Assistant config (generated on first run, git-ignored).
+      - ./dev-config:/config
+      # Mount the integration live so edits show up after a restart.
+      - ./custom_components/vandebron:/config/custom_components/vandebron
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8123:8123"
+    restart: unless-stopped

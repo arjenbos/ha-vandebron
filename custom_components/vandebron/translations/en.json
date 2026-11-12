@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vandebron Thuis",
+        "description": "Choose how to sign in.",
+        "menu_options": {
+          "credentials": "E-mail and password",
+          "oauth": "Sign in via browser (OAuth)"
+        }
+      },
+      "credentials": {
+        "title": "Sign in with e-mail and password",
+        "data": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "oauth": {
+        "title": "Sign in via browser",
+        "description": "1. Open this link in a browser and log in:\n\n{authorize_url}\n\n2. After logging in your browser is redirected to an address starting with `nl.vandebron.thuis.auth://oauth?code=...`. The page will not open, but copy that full address (or just the `code` value) from the address bar and paste it below.",
+        "data": {
+          "redirect_url": "Redirect URL or code"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid credentials.",
+      "direct_grant_disabled": "Password login is not available for this account. Please use 'Sign in via browser' instead.",
+      "no_code": "Could not find an authorization code in what you pasted."
+    },
+    "abort": {
+      "already_configured": "This Vandebron account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Market price options",
+        "data": {
+          "include_vat": "Include VAT in prices",
+          "include_extra_costs": "Include purchase fee and energy tax in prices"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_price_now": { "name": "Electricity price now" },
+      "electricity_price_next_hour": { "name": "Electricity price next hour" },
+      "electricity_price_avg_today": { "name": "Electricity price average today" },
+      "electricity_price_min_today": { "name": "Electricity price minimum today" },
+      "electricity_price_max_today": { "name": "Electricity price maximum today" },
+      "gas_price_now": { "name": "Gas price today" },
+      "customer_name": { "name": "Customer" },
+      "monthly_advance_amount": { "name": "Monthly advance amount" },
+      "current_month_costs": { "name": "Costs this month" },
+      "last_invoice_amount": { "name": "Last invoice amount" }
+    }
+  }
+}

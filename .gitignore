@@ -1,0 +1,10 @@
+# Home Assistant runtime files generated inside the dev config
+dev-config/*
+!dev-config/configuration.yaml
+
+# The APK is input material, not part of the integration
+*.xapk
+*.apk
+
+__pycache__/
+*.pyc

@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vandebron Thuis",
+        "description": "Kies hoe je wilt inloggen.",
+        "menu_options": {
+          "credentials": "E-mailadres en wachtwoord",
+          "oauth": "Inloggen via browser (OAuth)"
+        }
+      },
+      "credentials": {
+        "title": "Inloggen met e-mailadres en wachtwoord",
+        "data": {
+          "email": "E-mailadres",
+          "password": "Wachtwoord"
+        }
+      },
+      "oauth": {
+        "title": "Inloggen via browser",
+        "description": "1. Open deze link in een browser en log in:\n\n{authorize_url}\n\n2. Na het inloggen wordt je browser doorgestuurd naar een adres dat begint met `nl.vandebron.thuis.auth://oauth?code=...`. De pagina opent niet, maar kopieer dat volledige adres (of alleen de `code`-waarde) uit de adresbalk en plak het hieronder.",
+        "data": {
+          "redirect_url": "Redirect-URL of code"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ongeldige inloggegevens.",
+      "direct_grant_disabled": "Inloggen met wachtwoord is niet beschikbaar voor dit account. Gebruik 'Inloggen via browser'.",
+      "no_code": "Kon geen autorisatiecode vinden in wat je hebt geplakt."
+    },
+    "abort": {
+      "already_configured": "Dit Vandebron-account is al geconfigureerd."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Marktprijs-opties",
+        "data": {
+          "include_vat": "Prijzen inclusief btw",
+          "include_extra_costs": "Prijzen inclusief inkoopvergoeding en energiebelasting"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_price_now": { "name": "Stroomprijs nu" },
+      "electricity_price_next_hour": { "name": "Stroomprijs komend uur" },
+      "electricity_price_avg_today": { "name": "Stroomprijs gemiddeld vandaag" },
+      "electricity_price_min_today": { "name": "Stroomprijs minimum vandaag" },
+      "electricity_price_max_today": { "name": "Stroomprijs maximum vandaag" },
+      "gas_price_now": { "name": "Gasprijs vandaag" },
+      "customer_name": { "name": "Klant" },
+      "monthly_advance_amount": { "name": "Maandbedrag" },
+      "current_month_costs": { "name": "Kosten deze maand" },
+      "last_invoice_amount": { "name": "Laatste factuurbedrag" }
+    }
+  }
+}

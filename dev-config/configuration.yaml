@@ -1,0 +1,8 @@
+# Minimal Home Assistant config for testing the Vandebron integration.
+# Home Assistant fills in the rest on first start.
+default_config:
+
+logger:
+  default: info
+  logs:
+    custom_components.vandebron: debug
