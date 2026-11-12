@@ -1,6 +1,7 @@
 """Cover translated names, including components discovered after setup."""
 
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 from string import Formatter
@@ -103,3 +104,14 @@ def test_all_sensor_names_resolve_in_both_languages(kind, segment, contract):
             assert catalog["device"][device["translation_key"]]["name"].format(
                 **device["translation_placeholders"]
             )
+
+
+def test_translation_keys_match_hassfest_rules():
+    # hassfest also rejects adjacent separators, e.g. the old day_-1 suffix.
+    pattern = re.compile(r"^(?!.+[_-]{2})(?![_-])[a-z0-9-_]+(?<![_-])$")
+    for catalog in catalogs():
+        for domain in catalog["entity"].values():
+            for key in domain:
+                assert pattern.fullmatch(key), key
+        for key in catalog["device"]:
+            assert pattern.fullmatch(key), key

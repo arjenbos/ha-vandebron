@@ -43,3 +43,9 @@ async def test_pre_marketplace_home_assistant_rejected_before_api_calls(hass, mo
     with pytest.raises(ConfigEntryError, match="2026.11"):
         await vandebron.async_setup_entry(hass, Mock())
     session.assert_not_called()
+
+
+def test_manifest_key_order_matches_hassfest():
+    keys = list(json.loads((COMPONENT / "manifest.json").read_text()))
+    assert keys[:2] == ["domain", "name"]
+    assert keys[2:] == sorted(keys[2:])

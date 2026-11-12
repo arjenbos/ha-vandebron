@@ -111,22 +111,22 @@
       "gas_usage_year": {
         "name": "Gas consumption this year"
       },
-      "electricity_usage_day_0": {
+      "electricity_usage_day_today": {
         "name": "Electricity consumption today"
       },
-      "electricity_usage_day_-1": {
+      "electricity_usage_day_yesterday": {
         "name": "Electricity consumption yesterday"
       },
-      "electricity_redelivery_day_0": {
+      "electricity_redelivery_day_today": {
         "name": "Electricity returned to grid today"
       },
-      "electricity_redelivery_day_-1": {
+      "electricity_redelivery_day_yesterday": {
         "name": "Electricity returned to grid yesterday"
       },
-      "gas_usage_day_0": {
+      "gas_usage_day_today": {
         "name": "Gas consumption today"
       },
-      "gas_usage_day_-1": {
+      "gas_usage_day_yesterday": {
         "name": "Gas consumption yesterday"
       },
       "cost_totalinctax_month": {

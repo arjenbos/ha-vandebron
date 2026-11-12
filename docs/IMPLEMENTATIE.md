@@ -43,3 +43,9 @@ English is the default for integration-owned names and documentation. Dutch
 translations use Home Assistant's entity translation mechanism. Technical API
 identifiers and user-supplied account/address labels are preserved. See the
 [README](../README.md) for Energy dashboard inputs and tariff selection.
+
+The subsequent Marketplace-only change raises the supported minimum to Home
+Assistant 2026.11. The development container was upgraded to 2026.11.1 and a live
+refresh succeeded. Earlier 2026.5.2 results above describe historical checks.
+See the [Marketplace assessment](MARKETPLACE.md) for packaging, validation and
+publication prerequisites.

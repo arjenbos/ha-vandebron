@@ -111,22 +111,22 @@
       "gas_usage_year": {
         "name": "Gasverbruik dit jaar"
       },
-      "electricity_usage_day_0": {
+      "electricity_usage_day_today": {
         "name": "Stroomafname vandaag"
       },
-      "electricity_usage_day_-1": {
+      "electricity_usage_day_yesterday": {
         "name": "Stroomafname gisteren"
       },
-      "electricity_redelivery_day_0": {
+      "electricity_redelivery_day_today": {
         "name": "Teruglevering vandaag"
       },
-      "electricity_redelivery_day_-1": {
+      "electricity_redelivery_day_yesterday": {
         "name": "Teruglevering gisteren"
       },
-      "gas_usage_day_0": {
+      "gas_usage_day_today": {
         "name": "Gasverbruik vandaag"
       },
-      "gas_usage_day_-1": {
+      "gas_usage_day_yesterday": {
         "name": "Gasverbruik gisteren"
       },
       "cost_totalinctax_month": {

@@ -515,6 +515,7 @@ def metrics(source: Source) -> list[Metric]:
                             lambda s, n, f=fuel, k=field, o=offset: _daily_value(s, n, f, k, o),
                             lambda n: period_key("recent", n),
                             "m³" if fuel == "gas" else "kWh",
+                            translation_key=f"{fuel}_{field}_day_{label}",
                         )
                     )
     if source.kind == "account":

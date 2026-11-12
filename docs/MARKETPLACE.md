@@ -88,3 +88,17 @@ files, and doing so is unnecessary for Marketplace support.
 - [Get into the catalog](https://contributors.home-assistant.io/marketplace/guides/catalog/)
 - [Integration categories](https://contributors.home-assistant.io/core/integrations/categories/)
 - [Brand images](https://contributors.home-assistant.io/core/integrations/brands/)
+
+## Verification in this checkout
+
+All 68 tests pass, including direct checks with Home Assistant 2026.11.1's
+Marketplace repository-manifest validators and rejection of older Home Assistant
+versions before any API request. Ruff and whitespace checks pass.
+
+The development configuration and database were backed up before upgrading the
+container from 2026.5.2 to 2026.11.1. The updated container passes the Marketplace
+loadable-manifest check and completes a live Vandebron refresh without integration
+or translation errors. This verifies local loading and account access; it is not
+an end-to-end download/install from a published Marketplace repository. The
+hassfest and catalog GitHub Actions are configured but have not run on GitHub in
+this session.

@@ -1,12 +1,12 @@
 {
   "domain": "vandebron",
   "name": "Vandebron Thuis",
-  "codeowners": [
-    "@arjenbos"
-  ],
   "categories": [
     "energy.energy_prices",
     "energy.meters_monitoring"
+  ],
+  "codeowners": [
+    "@arjenbos"
   ],
   "config_flow": true,
   "dependencies": [
