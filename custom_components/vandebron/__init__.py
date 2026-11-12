@@ -6,8 +6,8 @@ import time
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import MAJOR_VERSION, MINOR_VERSION, Platform
-from homeassistant.exceptions import ConfigEntryError
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import VandebronApi, VandebronTokens
