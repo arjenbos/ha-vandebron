@@ -44,6 +44,8 @@ CONF_CUSTOMER_REFERENCE: Final = "customer_reference"
 CONF_ORGANIZATION_ID: Final = "organization_id"
 CONF_EMAIL: Final = "email"
 
+CONF_IMPORT_STATISTICS: Final = "import_statistics"
+
 CONF_INCLUDE_VAT: Final = "include_vat"
 CONF_INCLUDE_EXTRA_COSTS: Final = "include_extra_costs"
 

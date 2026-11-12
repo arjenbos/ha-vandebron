@@ -1,0 +1,16 @@
+{
+  "startDate": "2026-06-01", "endDate": "2026-06-03", "resolution": "DAY",
+  "electricity": {
+    "kind": "data", "hasDoubleUsage": true,
+    "total": {"usage": {"value": "15.90", "unit": "kwh"}, "peak": {"value": "10", "unit": "kwh"}, "offPeak": {"value": "5.90", "unit": "kwh"}, "redelivery": {"value": "4", "unit": "kwh"}},
+    "intervals": [
+      {"timestamp": "2026-06-01T00:00:00Z", "status": "AVAILABLE", "usage": {"value": "7.80", "unit": "kwh"}, "redelivery": {"value": "1", "unit": "kwh"}},
+      {"timestamp": "2026-06-02T00:00:00Z", "status": "AVAILABLE", "usage": {"value": "8.10", "unit": "kwh"}, "redelivery": {"value": "3", "unit": "kwh"}}
+    ]
+  },
+  "gas": {"kind": "data", "total": {"value": "4", "unit": "m3"}, "intervals": [
+    {"timestamp": "2026-06-01T00:00:00Z", "status": "AVAILABLE", "usage": {"value": "2.10", "unit": "m3"}},
+    {"timestamp": "2026-06-02T00:00:00Z", "status": "AVAILABLE", "usage": {"value": "1.90", "unit": "m3"}}
+  ]},
+  "costs": {"kind": "data", "totalIncTax": {"value": "14.01", "unit": "eur"}, "totalExTax": {"value": "12.27", "unit": "eur"}, "totalFixed": {"value": "4", "unit": "eur"}}
+}

@@ -18,44 +18,366 @@
       },
       "oauth": {
         "title": "Sign in via browser",
-        "description": "1. Open this link in a browser and log in:\n\n{authorize_url}\n\n2. After logging in your browser is redirected to an address starting with `nl.vandebron.thuis.auth://oauth?code=...`. The page will not open, but copy that full address (or just the `code` value) from the address bar and paste it below.",
+        "description": "Open this link and sign in:\n\n{authorize_url}\n\nCopy the complete redirect URL starting with nl.vandebron.thuis.auth://oauth?code=... and paste it below. Include the state parameter; a bare code is not accepted.",
         "data": {
-          "redirect_url": "Redirect URL or code"
+          "redirect_url": "Complete redirect URL"
         }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "description": "Sign in again with the same Vandebron account."
       }
     },
     "error": {
       "invalid_auth": "Invalid credentials.",
       "direct_grant_disabled": "Password login is not available for this account. Please use 'Sign in via browser' instead.",
-      "no_code": "Could not find an authorization code in what you pasted."
+      "no_code": "Could not find an authorization code in what you pasted.",
+      "cannot_connect": "Cannot reach Vandebron. Try again.",
+      "invalid_callback": "Paste the complete redirect URL from this login attempt, including code and state."
     },
     "abort": {
-      "already_configured": "This Vandebron account is already configured."
+      "already_configured": "This Vandebron account is already configured.",
+      "reauth_successful": "Signed in successfully.",
+      "wrong_account": "Use the same account as the original setup.",
+      "missing_identity": "The login did not return an identity or refresh token."
     }
   },
   "options": {
     "step": {
       "init": {
-        "title": "Market price options",
+        "title": "Vandebron options",
         "data": {
           "include_vat": "Include VAT in prices",
-          "include_extra_costs": "Include purchase fee and energy tax in prices"
+          "include_extra_costs": "Include purchase fee and energy tax in prices",
+          "import_statistics": "Import daily totals for the Energy Dashboard"
         }
       }
     }
   },
   "entity": {
     "sensor": {
-      "electricity_price_now": { "name": "Electricity price now" },
-      "electricity_price_next_hour": { "name": "Electricity price next hour" },
-      "electricity_price_avg_today": { "name": "Electricity price average today" },
-      "electricity_price_min_today": { "name": "Electricity price minimum today" },
-      "electricity_price_max_today": { "name": "Electricity price maximum today" },
-      "gas_price_now": { "name": "Gas price today" },
-      "customer_name": { "name": "Customer" },
-      "monthly_advance_amount": { "name": "Monthly advance amount" },
-      "current_month_costs": { "name": "Costs this month" },
-      "last_invoice_amount": { "name": "Last invoice amount" }
+      "data_status": {
+        "name": "Data status",
+        "state": {
+          "ok": "OK",
+          "partial": "Partial"
+        }
+      },
+      "last_invoice_amount": {
+        "name": "Last invoice amount"
+      },
+      "last_invoice_status": {
+        "name": "Last invoice status"
+      },
+      "outstanding_amount": {
+        "name": "Outstanding invoice amount"
+      },
+      "contract": {
+        "name": "Contract"
+      },
+      "customer_name": {
+        "name": "Customer"
+      },
+      "monthly_advance_amount": {
+        "name": "Monthly advance amount"
+      },
+      "electricity_usage_month": {
+        "name": "Electricity consumption this month"
+      },
+      "electricity_redelivery_month": {
+        "name": "Electricity returned to grid this month"
+      },
+      "electricity_peak_month": {
+        "name": "Electricity peak consumption this month"
+      },
+      "electricity_offpeak_month": {
+        "name": "Electricity off-peak consumption this month"
+      },
+      "gas_usage_month": {
+        "name": "Gas consumption this month"
+      },
+      "electricity_usage_year": {
+        "name": "Electricity consumption this year"
+      },
+      "electricity_redelivery_year": {
+        "name": "Electricity returned to grid this year"
+      },
+      "electricity_peak_year": {
+        "name": "Electricity peak consumption this year"
+      },
+      "electricity_offpeak_year": {
+        "name": "Electricity off-peak consumption this year"
+      },
+      "gas_usage_year": {
+        "name": "Gas consumption this year"
+      },
+      "electricity_usage_day_0": {
+        "name": "Electricity consumption today"
+      },
+      "electricity_usage_day_-1": {
+        "name": "Electricity consumption yesterday"
+      },
+      "electricity_redelivery_day_0": {
+        "name": "Electricity returned to grid today"
+      },
+      "electricity_redelivery_day_-1": {
+        "name": "Electricity returned to grid yesterday"
+      },
+      "gas_usage_day_0": {
+        "name": "Gas consumption today"
+      },
+      "gas_usage_day_-1": {
+        "name": "Gas consumption yesterday"
+      },
+      "cost_totalinctax_month": {
+        "name": "Total costs including tax this month"
+      },
+      "cost_totalextax_month": {
+        "name": "Total costs excluding tax this month"
+      },
+      "cost_totalfixed_month": {
+        "name": "Fixed costs this month"
+      },
+      "cost_totalgasinctax_month": {
+        "name": "Gas costs this month"
+      },
+      "cost_totalelecinctax_month": {
+        "name": "Electricity costs this month"
+      },
+      "cost_totalredeliveryinctax_month": {
+        "name": "Feed-in amount this month"
+      },
+      "cost_totalinctax_year": {
+        "name": "Total costs including tax this year"
+      },
+      "cost_totalextax_year": {
+        "name": "Total costs excluding tax this year"
+      },
+      "cost_totalfixed_year": {
+        "name": "Fixed costs this year"
+      },
+      "cost_totalgasinctax_year": {
+        "name": "Gas costs this year"
+      },
+      "cost_totalelecinctax_year": {
+        "name": "Electricity costs this year"
+      },
+      "cost_totalredeliveryinctax_year": {
+        "name": "Feed-in amount this year"
+      },
+      "electricity_actual": {
+        "name": "Electricity this month"
+      },
+      "electricity_expectedmonth": {
+        "name": "Electricity expected this month"
+      },
+      "electricity_expecteduntilnow": {
+        "name": "Electricity expected until now"
+      },
+      "gas_actual": {
+        "name": "Gas this month"
+      },
+      "gas_expectedmonth": {
+        "name": "Gas expected this month"
+      },
+      "gas_expecteduntilnow": {
+        "name": "Gas expected until now"
+      },
+      "costs_actual": {
+        "name": "Costs this month"
+      },
+      "costs_expectedmonth": {
+        "name": "Costs expected this month"
+      },
+      "costs_expecteduntilnow": {
+        "name": "Costs expected until now"
+      },
+      "last_reading_electricity": {
+        "name": "Electricity last reading date"
+      },
+      "last_reading_gas": {
+        "name": "Gas last reading date"
+      },
+      "last_reading_costs": {
+        "name": "Costs last reading date"
+      },
+      "rates": {
+        "name": "Contract rates"
+      },
+      "contract_electricity": {
+        "name": "Electricity contract"
+      },
+      "contract_gas": {
+        "name": "Gas contract"
+      },
+      "electricity_price_now": {
+        "name": "Electricity rate"
+      },
+      "electricity_price_next_hour": {
+        "name": "Next market price"
+      },
+      "contract_price_base": {
+        "name": "Electricity single rate"
+      },
+      "contract_price_peak": {
+        "name": "Electricity peak rate"
+      },
+      "contract_price_offpeak": {
+        "name": "Electricity off-peak rate"
+      },
+      "contract_rates": {
+        "name": "Tariff component count"
+      },
+      "electricity_price_avg_today": {
+        "name": "Market price average today"
+      },
+      "electricity_price_min_today": {
+        "name": "Market price minimum today"
+      },
+      "electricity_price_max_today": {
+        "name": "Market price maximum today"
+      },
+      "electricity_market_price_now": {
+        "name": "Market price now"
+      },
+      "meter_status": {
+        "name": "Meter status",
+        "state": {
+          "operational": "Operational",
+          "not_operational": "Not operational"
+        }
+      },
+      "connection": {
+        "name": "Connection"
+      },
+      "contract_type": {
+        "name": "Contract type"
+      },
+      "legacy_cost_totalfixed_month": {
+        "name": "Fixed costs this month"
+      },
+      "legacy_cost_totalvariable_month": {
+        "name": "Variable costs this month"
+      },
+      "legacy_cost_totalearnings_month": {
+        "name": "Feed-in revenue this month"
+      },
+      "legacy_cost_totalfixed_year": {
+        "name": "Fixed costs this year"
+      },
+      "legacy_cost_totalvariable_year": {
+        "name": "Variable costs this year"
+      },
+      "legacy_cost_totalearnings_year": {
+        "name": "Feed-in revenue this year"
+      },
+      "gas_price_now": {
+        "name": "Gas rate"
+      },
+      "gas_price_next_hour": {
+        "name": "Next market price"
+      },
+      "gas_price_avg_today": {
+        "name": "Market price average today"
+      },
+      "gas_price_min_today": {
+        "name": "Market price minimum today"
+      },
+      "gas_price_max_today": {
+        "name": "Market price maximum today"
+      },
+      "gas_market_price_now": {
+        "name": "Market price now"
+      },
+      "component_base": {
+        "name": "Single-rate supply component{band}"
+      },
+      "component_peak": {
+        "name": "Peak supply component{band}"
+      },
+      "component_offpeak": {
+        "name": "Off-peak supply component{band}"
+      },
+      "component_baseodn": {
+        "name": "Single-rate feed-in compensation{band}"
+      },
+      "component_peakodn": {
+        "name": "Peak feed-in compensation{band}"
+      },
+      "component_offpeakodn": {
+        "name": "Off-peak feed-in compensation{band}"
+      },
+      "component_baseodnexcess": {
+        "name": "Single-rate excess feed-in compensation{band}"
+      },
+      "component_peakodnexcess": {
+        "name": "Peak excess feed-in compensation{band}"
+      },
+      "component_offpeakodnexcess": {
+        "name": "Off-peak excess feed-in compensation{band}"
+      },
+      "component_fixedfee": {
+        "name": "Fixed supply costs{band}"
+      },
+      "component_fixedproductionfee": {
+        "name": "Fixed feed-in costs{band}"
+      },
+      "component_energytax": {
+        "name": "Energy tax{band}"
+      },
+      "component_renewableenergymarkup": {
+        "name": "Renewable energy surcharge{band}"
+      },
+      "component_taxcredit": {
+        "name": "Energy tax credit{band}"
+      },
+      "component_networkcosts": {
+        "name": "Network costs{band}"
+      },
+      "component_discount": {
+        "name": "Discount{band}"
+      },
+      "component_actiondiscount": {
+        "name": "Promotional discount{band}"
+      },
+      "component_powertypesurcharge": {
+        "name": "Energy source surcharge{band}"
+      },
+      "component_smartmeterservicefee": {
+        "name": "Smart meter service fee{band}"
+      },
+      "component_regionmarkup": {
+        "name": "Gas regional surcharge{band}"
+      },
+      "component_premium": {
+        "name": "Gas local investment premium{band}"
+      },
+      "component_salesfee": {
+        "name": "Sales fee{band}"
+      },
+      "component_collectionfees": {
+        "name": "Collection fees{band}"
+      },
+      "api_rate": {
+        "name": "{label}"
+      }
+    }
+  },
+  "device": {
+    "account": {
+      "name": "{source}"
+    },
+    "address": {
+      "name": "{source}"
+    },
+    "organization": {
+      "name": "{source}"
+    },
+    "connection_electricity": {
+      "name": "{source} (Electricity)"
+    },
+    "connection_gas": {
+      "name": "{source} (Gas)"
     }
   }
 }

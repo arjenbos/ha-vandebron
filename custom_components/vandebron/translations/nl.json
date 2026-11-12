@@ -18,44 +18,366 @@
       },
       "oauth": {
         "title": "Inloggen via browser",
-        "description": "1. Open deze link in een browser en log in:\n\n{authorize_url}\n\n2. Na het inloggen wordt je browser doorgestuurd naar een adres dat begint met `nl.vandebron.thuis.auth://oauth?code=...`. De pagina opent niet, maar kopieer dat volledige adres (of alleen de `code`-waarde) uit de adresbalk en plak het hieronder.",
+        "description": "Open de loginlink en meld je aan:\n\n{authorize_url}\n\nKopieer daarna de volledige redirect-URL die begint met nl.vandebron.thuis.auth://oauth?code=... en plak die hieronder. De URL moet ook de state-parameter bevatten. Een losse code wordt niet geaccepteerd.",
         "data": {
-          "redirect_url": "Redirect-URL of code"
+          "redirect_url": "Volledige redirect-URL"
         }
+      },
+      "reauth_confirm": {
+        "title": "Opnieuw aanmelden",
+        "description": "Meld je opnieuw aan met hetzelfde Vandebron-account."
       }
     },
     "error": {
       "invalid_auth": "Ongeldige inloggegevens.",
       "direct_grant_disabled": "Inloggen met wachtwoord is niet beschikbaar voor dit account. Gebruik 'Inloggen via browser'.",
-      "no_code": "Kon geen autorisatiecode vinden in wat je hebt geplakt."
+      "no_code": "Kon geen autorisatiecode vinden in wat je hebt geplakt.",
+      "cannot_connect": "Kan Vandebron niet bereiken. Probeer opnieuw.",
+      "invalid_callback": "Plak de volledige redirect-URL van deze loginpoging, inclusief code en state."
     },
     "abort": {
-      "already_configured": "Dit Vandebron-account is al geconfigureerd."
+      "already_configured": "Dit Vandebron-account is al geconfigureerd.",
+      "reauth_successful": "Opnieuw aanmelden geslaagd.",
+      "wrong_account": "Gebruik hetzelfde account als bij de oorspronkelijke installatie.",
+      "missing_identity": "De login bevat geen klantidentiteit of vernieuwingstoken."
     }
   },
   "options": {
     "step": {
       "init": {
-        "title": "Marktprijs-opties",
+        "title": "Vandebron-opties",
         "data": {
           "include_vat": "Prijzen inclusief btw",
-          "include_extra_costs": "Prijzen inclusief inkoopvergoeding en energiebelasting"
+          "include_extra_costs": "Prijzen inclusief inkoopvergoeding en energiebelasting",
+          "import_statistics": "Dagtotalen importeren voor het Energy Dashboard"
         }
       }
     }
   },
   "entity": {
     "sensor": {
-      "electricity_price_now": { "name": "Stroomprijs nu" },
-      "electricity_price_next_hour": { "name": "Stroomprijs komend uur" },
-      "electricity_price_avg_today": { "name": "Stroomprijs gemiddeld vandaag" },
-      "electricity_price_min_today": { "name": "Stroomprijs minimum vandaag" },
-      "electricity_price_max_today": { "name": "Stroomprijs maximum vandaag" },
-      "gas_price_now": { "name": "Gasprijs vandaag" },
-      "customer_name": { "name": "Klant" },
-      "monthly_advance_amount": { "name": "Maandbedrag" },
-      "current_month_costs": { "name": "Kosten deze maand" },
-      "last_invoice_amount": { "name": "Laatste factuurbedrag" }
+      "data_status": {
+        "name": "Gegevensstatus",
+        "state": {
+          "ok": "In orde",
+          "partial": "Gedeeltelijk"
+        }
+      },
+      "last_invoice_amount": {
+        "name": "Laatste factuurbedrag"
+      },
+      "last_invoice_status": {
+        "name": "Laatste factuurstatus"
+      },
+      "outstanding_amount": {
+        "name": "Openstaand factuurbedrag"
+      },
+      "contract": {
+        "name": "Contract"
+      },
+      "customer_name": {
+        "name": "Klant"
+      },
+      "monthly_advance_amount": {
+        "name": "Maandbedrag"
+      },
+      "electricity_usage_month": {
+        "name": "Stroomafname deze maand"
+      },
+      "electricity_redelivery_month": {
+        "name": "Teruglevering deze maand"
+      },
+      "electricity_peak_month": {
+        "name": "Stroomafname normaal deze maand"
+      },
+      "electricity_offpeak_month": {
+        "name": "Stroomafname dal deze maand"
+      },
+      "gas_usage_month": {
+        "name": "Gasverbruik deze maand"
+      },
+      "electricity_usage_year": {
+        "name": "Stroomafname dit jaar"
+      },
+      "electricity_redelivery_year": {
+        "name": "Teruglevering dit jaar"
+      },
+      "electricity_peak_year": {
+        "name": "Stroomafname normaal dit jaar"
+      },
+      "electricity_offpeak_year": {
+        "name": "Stroomafname dal dit jaar"
+      },
+      "gas_usage_year": {
+        "name": "Gasverbruik dit jaar"
+      },
+      "electricity_usage_day_0": {
+        "name": "Stroomafname vandaag"
+      },
+      "electricity_usage_day_-1": {
+        "name": "Stroomafname gisteren"
+      },
+      "electricity_redelivery_day_0": {
+        "name": "Teruglevering vandaag"
+      },
+      "electricity_redelivery_day_-1": {
+        "name": "Teruglevering gisteren"
+      },
+      "gas_usage_day_0": {
+        "name": "Gasverbruik vandaag"
+      },
+      "gas_usage_day_-1": {
+        "name": "Gasverbruik gisteren"
+      },
+      "cost_totalinctax_month": {
+        "name": "Totale kosten inclusief belasting deze maand"
+      },
+      "cost_totalextax_month": {
+        "name": "Totale kosten exclusief belasting deze maand"
+      },
+      "cost_totalfixed_month": {
+        "name": "Vaste kosten deze maand"
+      },
+      "cost_totalgasinctax_month": {
+        "name": "Gaskosten deze maand"
+      },
+      "cost_totalelecinctax_month": {
+        "name": "Stroomkosten deze maand"
+      },
+      "cost_totalredeliveryinctax_month": {
+        "name": "Terugleverbedrag deze maand"
+      },
+      "cost_totalinctax_year": {
+        "name": "Totale kosten inclusief belasting dit jaar"
+      },
+      "cost_totalextax_year": {
+        "name": "Totale kosten exclusief belasting dit jaar"
+      },
+      "cost_totalfixed_year": {
+        "name": "Vaste kosten dit jaar"
+      },
+      "cost_totalgasinctax_year": {
+        "name": "Gaskosten dit jaar"
+      },
+      "cost_totalelecinctax_year": {
+        "name": "Stroomkosten dit jaar"
+      },
+      "cost_totalredeliveryinctax_year": {
+        "name": "Terugleverbedrag dit jaar"
+      },
+      "electricity_actual": {
+        "name": "Stroom deze maand"
+      },
+      "electricity_expectedmonth": {
+        "name": "Stroom verwacht deze maand"
+      },
+      "electricity_expecteduntilnow": {
+        "name": "Stroom verwacht tot nu toe"
+      },
+      "gas_actual": {
+        "name": "Gas deze maand"
+      },
+      "gas_expectedmonth": {
+        "name": "Gas verwacht deze maand"
+      },
+      "gas_expecteduntilnow": {
+        "name": "Gas verwacht tot nu toe"
+      },
+      "costs_actual": {
+        "name": "Kosten deze maand"
+      },
+      "costs_expectedmonth": {
+        "name": "Kosten verwacht deze maand"
+      },
+      "costs_expecteduntilnow": {
+        "name": "Kosten verwacht tot nu toe"
+      },
+      "last_reading_electricity": {
+        "name": "Stroom laatste meetdatum"
+      },
+      "last_reading_gas": {
+        "name": "Gas laatste meetdatum"
+      },
+      "last_reading_costs": {
+        "name": "Kosten laatste meetdatum"
+      },
+      "rates": {
+        "name": "Contracttarieven"
+      },
+      "contract_electricity": {
+        "name": "Stroomcontract"
+      },
+      "contract_gas": {
+        "name": "Gascontract"
+      },
+      "electricity_price_now": {
+        "name": "Stroomtarief"
+      },
+      "electricity_price_next_hour": {
+        "name": "Volgende marktprijs"
+      },
+      "contract_price_base": {
+        "name": "Stroomtarief enkel"
+      },
+      "contract_price_peak": {
+        "name": "Stroomtarief normaal"
+      },
+      "contract_price_offpeak": {
+        "name": "Stroomtarief dal"
+      },
+      "contract_rates": {
+        "name": "Aantal tariefonderdelen"
+      },
+      "electricity_price_avg_today": {
+        "name": "Marktprijs gemiddeld vandaag"
+      },
+      "electricity_price_min_today": {
+        "name": "Marktprijs minimum vandaag"
+      },
+      "electricity_price_max_today": {
+        "name": "Marktprijs maximum vandaag"
+      },
+      "electricity_market_price_now": {
+        "name": "Marktprijs nu"
+      },
+      "meter_status": {
+        "name": "Meterstatus",
+        "state": {
+          "operational": "Operationeel",
+          "not_operational": "Niet operationeel"
+        }
+      },
+      "connection": {
+        "name": "Aansluiting"
+      },
+      "contract_type": {
+        "name": "Contracttype"
+      },
+      "legacy_cost_totalfixed_month": {
+        "name": "Vaste kosten deze maand"
+      },
+      "legacy_cost_totalvariable_month": {
+        "name": "Variabele kosten deze maand"
+      },
+      "legacy_cost_totalearnings_month": {
+        "name": "Terugleveropbrengst deze maand"
+      },
+      "legacy_cost_totalfixed_year": {
+        "name": "Vaste kosten dit jaar"
+      },
+      "legacy_cost_totalvariable_year": {
+        "name": "Variabele kosten dit jaar"
+      },
+      "legacy_cost_totalearnings_year": {
+        "name": "Terugleveropbrengst dit jaar"
+      },
+      "gas_price_now": {
+        "name": "Gastarief"
+      },
+      "gas_price_next_hour": {
+        "name": "Volgende marktprijs"
+      },
+      "gas_price_avg_today": {
+        "name": "Marktprijs gemiddeld vandaag"
+      },
+      "gas_price_min_today": {
+        "name": "Marktprijs minimum vandaag"
+      },
+      "gas_price_max_today": {
+        "name": "Marktprijs maximum vandaag"
+      },
+      "gas_market_price_now": {
+        "name": "Marktprijs nu"
+      },
+      "component_base": {
+        "name": "Levering enkeltarief{band}"
+      },
+      "component_peak": {
+        "name": "Levering normaal{band}"
+      },
+      "component_offpeak": {
+        "name": "Levering dal{band}"
+      },
+      "component_baseodn": {
+        "name": "Teruglevering enkel{band}"
+      },
+      "component_peakodn": {
+        "name": "Teruglevering normaal{band}"
+      },
+      "component_offpeakodn": {
+        "name": "Teruglevering dal{band}"
+      },
+      "component_baseodnexcess": {
+        "name": "Teruglevering overschot enkel{band}"
+      },
+      "component_peakodnexcess": {
+        "name": "Teruglevering overschot normaal{band}"
+      },
+      "component_offpeakodnexcess": {
+        "name": "Teruglevering overschot dal{band}"
+      },
+      "component_fixedfee": {
+        "name": "Vaste leveringskosten{band}"
+      },
+      "component_fixedproductionfee": {
+        "name": "Vaste terugleveringskosten{band}"
+      },
+      "component_energytax": {
+        "name": "Energiebelasting{band}"
+      },
+      "component_renewableenergymarkup": {
+        "name": "Opslag duurzame energie{band}"
+      },
+      "component_taxcredit": {
+        "name": "Vermindering energiebelasting{band}"
+      },
+      "component_networkcosts": {
+        "name": "Netbeheerkosten{band}"
+      },
+      "component_discount": {
+        "name": "Korting{band}"
+      },
+      "component_actiondiscount": {
+        "name": "Actiekorting{band}"
+      },
+      "component_powertypesurcharge": {
+        "name": "Toeslag energiebron{band}"
+      },
+      "component_smartmeterservicefee": {
+        "name": "Slimme-meterdienst{band}"
+      },
+      "component_regionmarkup": {
+        "name": "Regiotoeslag gas{band}"
+      },
+      "component_premium": {
+        "name": "Lokaal investeren gas{band}"
+      },
+      "component_salesfee": {
+        "name": "Verkoopvergoeding{band}"
+      },
+      "component_collectionfees": {
+        "name": "Incassokosten{band}"
+      },
+      "api_rate": {
+        "name": "{label}"
+      }
+    }
+  },
+  "device": {
+    "account": {
+      "name": "{source}"
+    },
+    "address": {
+      "name": "{source}"
+    },
+    "organization": {
+      "name": "{source}"
+    },
+    "connection_electricity": {
+      "name": "{source} (Stroom)"
+    },
+    "connection_gas": {
+      "name": "{source} (Gas)"
     }
   }
 }

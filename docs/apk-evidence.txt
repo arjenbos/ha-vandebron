@@ -1,0 +1,813 @@
+# Selected Hermes v99 disassembly from Vandebron 3.4.15
+# Bundle SHA-256: 05d1b7173636d9fb02cb7761ff84fbcffcf5952dfd02a5711be8eaa6df461b08
+# F = function index; off = byte offset in assets/index.android.bundle.
+# Recovered local disassembly; bundle hash rechecked against the supplied XAPK.
+# Mocks indicate the client contract, not live server responses.
+
+=== F27795 'getV1Accounts' params=3 off=9795837 size=43
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'usersMutator'
+     13 NewObjectWithBufferLong r2, 4230, 595562 {'url': '/v1/accounts', 'method': 'GET', 'signal': None}
+     23 LoadParam r1, 2
+     26 PutOwnBySlotIdx r2, r1, 2
+     30 LoadConstUndefined r0
+     32 LoadParam r1, 1
+     35 Call3 r1, r3, r0, r2, r1
+     41 Ret r1
+=== F28643 'getLatestCosts' params=4 off=9843852 size=77
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'measurementsMutator'
+     13 NewObjectWithBufferLong r2, 4230, 469744 {'url': None, 'method': 'GET', 'signal': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/insights-overview/latest-costs'
+     40 LoadConstString r4, '/v1/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 3
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadConstUndefined r0
+     66 LoadParam r1, 2
+     69 Call3 r1, r3, r0, r2, r1
+     75 Ret r1
+=== F28646 'getLatestCostsV2' params=4 off=9844139 size=77
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'measurementsMutator'
+     13 NewObjectWithBufferLong r2, 4230, 469744 {'url': None, 'method': 'GET', 'signal': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/insights-overview/latest-costs'
+     40 LoadConstString r4, '/v2/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 3
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadConstUndefined r0
+     66 LoadParam r1, 2
+     69 Call3 r1, r3, r0, r2, r1
+     75 Ret r1
+=== F28649 'getUsageGraphs' params=4 off=9844426 size=77
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'measurementsMutator'
+     13 NewObjectWithBufferLong r2, 4293, 469744 {'url': None, 'method': 'GET', 'params': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/usage-graphs'
+     40 LoadConstString r4, '/v1/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 2
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadConstUndefined r0
+     66 LoadParam r1, 3
+     69 Call3 r1, r3, r0, r2, r1
+     75 Ret r1
+=== F28652 'getUsageGraphsLatest' params=4 off=9844789 size=77
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'measurementsMutator'
+     13 NewObjectWithBufferLong r2, 4293, 469744 {'url': None, 'method': 'GET', 'params': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/usage-graphs/latest'
+     40 LoadConstString r4, '/v1/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 2
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadConstUndefined r0
+     66 LoadParam r1, 3
+     69 Call3 r1, r3, r0, r2, r1
+     75 Ret r1
+=== F33507 'generateGetUsageEndpoint' params=2 off=10162830 size=133
+      0 LoadParam r1, 1
+      3 GetById r9, r1, 0, 'organizationId'
+      9 GetById r8, r1, 1, 'connectionId'
+     15 GetById r12, r1, 2, 'resolution'
+     21 GetById r3, r1, 3, 'startDate'
+     27 GetById r2, r1, 4, 'endDate'
+     33 GetParentEnvironment r1, 0
+     36 LoadFromEnvironment r1, r1, 2
+     40 GetById r1, r1, 5, 'formatApiDateRange'
+     46 LoadConstUndefined r0
+     48 Call3 r1, r1, r0, r3, r2
+     54 GetById r6, r1, 3, 'startDate'
+     60 GetById r5, r1, 4, 'endDate'
+     66 GetGlobalObject r1
+     68 TryGetById r2, r1, 6, 'HermesInternal'
+     74 GetByIdShort r4, r2, 7, 'concat'
+     79 LoadConstString r3, '&endDate='
+     83 LoadConstString r2, 'startDate='
+     87 Call4 r10, r4, r2, r6, r3, r5
+     94 TryGetById r1, r1, 6, 'HermesInternal'
+    100 GetByIdShort r5, r1, 7, 'concat'
+    105 LoadConstString r11, '&'
+    109 LoadConstString r13, '/usage?resolution='
+    113 LoadConstString r15, '/connections/'
+    117 LoadConstString r17, '/consumers/'
+    121 Mov r16, r9
+    124 Mov r14, r8
+    127 Call r1, r5, 8
+    131 Ret r1
+=== F37132 'useGetMarketPrices' params=2 off=10466807 size=730
+      0 GetParentEnvironment r6, 0
+      3 CreateFunctionEnvironment r2, 5
+      6 LoadParam r3, 1
+      9 GetById r11, r3, 0, 'connectionId'
+     15 GetById r4, r3, 1, 'marketSegment'
+     21 StoreToEnvironment r2, 0, r4
+     25 GetById r12, r3, 2, 'dayChoice'
+     31 StoreToEnvironment r2, 1, r12
+     35 LoadConstUndefined r1
+     37 StoreNPToEnvironment r2, 2, r1
+     41 StoreNPToEnvironment r2, 3, r1
+     45 StoreNPToEnvironment r2, 4, r1
+     49 LoadFromEnvironment r3, r6, 7
+     53 GetByIdShort r3, r3, 3, 'default'
+     58 Call1 r3, r3, r1
+     62 GetById r14, r3, 4, 'organizationId'
+     68 GetByIdShort r4, r3, 5, 'isLoading'
+     73 GetById r13, r3, 6, 'isFetching'
+     79 LoadFromEnvironment r3, r6, 1
+     83 GetById r5, r3, 7, 'useSelector'
+     89 LoadFromEnvironment r3, r6, 6
+     93 GetById r3, r3, 8, 'selectIncludeTaxes'
+     99 Call2 r9, r5, r1, r3
+    104 GetGlobalObject r3
+    106 TryGetById r3, r3, 9, 'Date'
+    112 CreateThisForNew r5, r3, 10
+    116 Mov r19, r5
+    119 Construct r3, r3, 1
+    123 SelectObject r8, r5, r3
+    127 LoadFromEnvironment r3, r6, 2
+    131 GetByIdShort r10, r3, 11, 'format'
+    136 GetById r5, r3, 12, 'subDays'
+    142 LoadConstUInt8 r0, 1
+    145 Call3 r5, r5, r1, r8, r0
+    151 LoadConstString r7, 'yyyy-MM-dd'
+    155 Call3 r10, r10, r1, r5, r7
+    161 GetByIdShort r5, r3, 11, 'format'
+    166 Call3 r16, r5, r1, r8, r7
+    172 GetByIdShort r5, r3, 11, 'format'
+    177 GetById r3, r3, 13, 'addDays'
+    183 Call3 r3, r3, r1, r8, r0
+    189 Call3 r15, r5, r1, r3, r7
+    195 LoadFromEnvironment r5, r6, 5
+    199 GetById r7, r5, 14, 'useGetMarketPricesQuery'
+    205 JmpFalse @211, r14
+    208 JmpTrue @223, r11
+    211 LoadFromEnvironment r3, r6, 3
+    215 GetById r3, r3, 15, 'skipToken'
+    221 Jmp @256
+    223 NewObjectWithBufferLong r8, 5291, 106715 {'date': None, 'includeVAT': None, 'includeExtraCosts': None, 'organizationId': None, 'connectionId': None}
+    233 PutOwnBySlotIdx r8, r10, 0
+    237 PutOwnBySlotIdx r8, r9, 1
+    241 PutOwnBySlotIdx r8, r9, 2
+    245 PutOwnBySlotIdx r8, r14, 3
+    249 PutOwnBySlotIdx r8, r11, 4
+    253 Mov r3, r8
+    256 Call2 r8, r7, r1, r3
+    261 StoreToEnvironment r2, 2, r8
+    265 GetById r7, r5, 14, 'useGetMarketPricesQuery'
+    271 JmpFalse @277, r14
+    274 JmpTrue @289, r11
+    277 LoadFromEnvironment r3, r6, 3
+    281 GetById r3, r3, 15, 'skipToken'
+    287 Jmp @322
+    289 NewObjectWithBufferLong r10, 5291, 106715 {'date': None, 'includeVAT': None, 'includeExtraCosts': None, 'organizationId': None, 'connectionId': None}
+    299 PutOwnBySlotIdx r10, r16, 0
+    303 PutOwnBySlotIdx r10, r9, 1
+    307 PutOwnBySlotIdx r10, r9, 2
+    311 PutOwnBySlotIdx r10, r14, 3
+    315 PutOwnBySlotIdx r10, r11, 4
+    319 Mov r3, r10
+    322 Call2 r3, r7, r1, r3
+    327 StoreToEnvironment r2, 3, r3
+    331 GetById r7, r5, 14, 'useGetMarketPricesQuery'
+    337 JmpFalse @343, r14
+    340 JmpTrue @355, r11
+    343 LoadFromEnvironment r5, r6, 3
+    347 GetById r5, r5, 15, 'skipToken'
+    353 Jmp @388
+    355 NewObjectWithBufferLong r10, 5291, 106715 {'date': None, 'includeVAT': None, 'includeExtraCosts': None, 'organizationId': None, 'connectionId': None}
+    365 PutOwnBySlotIdx r10, r15, 0
+    369 PutOwnBySlotIdx r10, r9, 1
+    373 PutOwnBySlotIdx r10, r9, 2
+    377 PutOwnBySlotIdx r10, r14, 3
+    381 PutOwnBySlotIdx r10, r11, 4
+    385 Mov r5, r10
+    388 Call2 r5, r7, r1, r5
+    393 StoreToEnvironment r2, 4, r5
+    397 LoadFromEnvironment r7, r6, 0
+    401 GetByIdShort r14, r7, 16, 'useMemo'
+    406 NewArray r11, 4
+    410 DefineOwnInDenseArray r11, r12, 0
+    414 GetByIdShort r10, r3, 17, 'data'
+    419 DefineOwnInDenseArray r11, r10, 1
+    423 GetByIdShort r10, r5, 17, 'data'
+    428 DefineOwnInDenseArray r11, r10, 2
+    432 DefineOwnInDenseArray r11, r9, 3
+    436 CreateClosure r10, r2, F57149<>
+    441 Call3 r10, r14, r1, r10, r11
+    447 GetByIdShort r14, r7, 16, 'useMemo'
+    452 GetByIdShort r15, r5, 17, 'data'
+    457 NewArray r11, 5
+    461 DefineOwnInDenseArray r11, r15, 0
+    465 GetByIdShort r15, r3, 17, 'data'
+    470 DefineOwnInDenseArray r11, r15, 1
+    474 GetByIdShort r15, r8, 17, 'data'
+    479 DefineOwnInDenseArray r11, r15, 2
+    483 DefineOwnInDenseArray r11, r12, 3
+    487 DefineOwnInDenseArray r11, r9, 4
+    491 CreateClosure r9, r2, F57150<>
+    496 Call3 r9, r14, r1, r9, r11
+    502 GetByIdShort r14, r7, 16, 'useMemo'
+    507 NewArray r11, 5
+    511 DefineOwnInDenseArray r11, r12, 0
+    515 GetByIdShort r15, r3, 17, 'data'
+    520 DefineOwnInDenseArray r11, r15, 1
+    524 GetByIdShort r15, r5, 17, 'data'
+    529 DefineOwnInDenseArray r11, r15, 2
+    533 GetByIdShort r15, r8, 17, 'data'
+    538 DefineOwnInDenseArray r11, r15, 3
+    542 GetById r8, r8, 18, 'isError'
+    548 DefineOwnInDenseArray r11, r8, 4
+    552 CreateClosure r8, r2, F57151<>
+    557 Call3 r8, r14, r1, r8, r11
+    563 GetByIdShort r14, r7, 16, 'useMemo'
+    568 NewArray r11, 3
+    572 DefineOwnInDenseArray r11, r12, 0
+    576 GetById r7, r3, 18, 'isError'
+    582 DefineOwnInDenseArray r11, r7, 1
+    586 DefineOwnInDenseArray r11, r5, 2
+    590 CreateClosure r7, r2, F57152<>
+    595 Call3 r7, r14, r1, r7, r11
+    601 LoadFromEnvironment r11, r6, 11
+    605 GetById r6, r11, 19, 'DayChoice'
+    611 GetById r6, r6, 20, 'Today'
+    617 JStrictEqual @635, r12, r6
+    621 GetById r6, r5, 6, 'isFetching'
+    627 JmpTrue @633, r6
+    630 Mov r6, r13
+    633 Jmp @641
+    635 GetById r6, r3, 6, 'isFetching'
+    641 GetById r11, r11, 19, 'DayChoice'
+    647 GetById r11, r11, 20, 'Today'
+    653 JStrictEqual @670, r12, r11
+    657 GetByIdShort r5, r5, 5, 'isLoading'
+    662 JmpTrue @668, r5
+    665 Mov r5, r4
+    668 Jmp @675
+    670 GetByIdShort r5, r3, 5, 'isLoading'
+    675 CreateClosure r4, r2, F57148<refetchPrices>
+    680 NewObjectWithBufferLong r2, 5292, 105943 {'chosenDayElectricityPrices': None, 'chosenDayGasPrices': None, 'priceDelta': None, 'isError': None, 'isFetching': None, 'isLoading': None, 'refetchMarketPrices': None, 'fulfilledTodayTimeStamp': None}
+    690 PutOwnBySlotIdx r2, r10, 0
+    694 PutOwnBySlotIdx r2, r9, 1
+    698 PutOwnBySlotIdx r2, r8, 2
+    702 PutOwnBySlotIdx r2, r7, 3
+    706 PutOwnBySlotIdx r2, r6, 4
+    710 PutOwnBySlotIdx r2, r5, 5
+    714 PutOwnBySlotIdx r2, r4, 6
+    718 GetById r3, r3, 21, 'fulfilledTimeStamp'
+    724 PutOwnBySlotIdx r2, r3, 7
+    728 Ret r2
+=== F37135 'getChosenDayElectricityPrices' params=2 off=10467537 size=123
+      0 GetParentEnvironment r1, 0
+      3 LoadParam r3, 1
+      6 GetById r5, r3, 0, 'dayChoice'
+     12 GetById r2, r3, 1, 'todayPriceQueryData'
+     18 GetById r4, r3, 2, 'tomorrowPriceQueryData'
+     24 LoadFromEnvironment r3, r1, 1
+     28 GetById r6, r3, 3, 'DayChoice'
+     34 GetById r6, r6, 4, 'Today'
+     40 JStrictEqual @60, r5, r6
+     44 GetById r6, r3, 3, 'DayChoice'
+     50 GetById r6, r6, 5, 'Tomorrow'
+     56 JStrictNotEqual @119, r5, r6
+     60 GetById r3, r3, 3, 'DayChoice'
+     66 GetById r3, r3, 4, 'Today'
+     72 JStrictNotEqual @79, r5, r3
+     76 Mov r4, r2
+     79 JmpFalse @90, r4
+     82 GetByIdShort r2, r4, 6, 'length'
+     87 JmpTrue @96, r2
+     90 NewArray r2, 0
+     94 Ret r2
+     96 GetById r3, r4, 7, 'reduce'
+    102 NewArray r2, 0
+    106 CreateClosure r1, r1, F57153<>
+    111 Call3 r1, r3, r4, r1, r2
+    117 Ret r1
+    119 LoadConstNull r0
+    121 Ret r0
+=== F37139 'getChosenDayGasPrices' params=2 off=10467836 size=452
+      0 CreateTopLevelEnvironment r5, 4
+      6 LoadParam r6, 1
+      9 GetById r10, r6, 0, 'dayChoice'
+     15 GetById r8, r6, 1, 'todayPriceQueryData'
+     21 GetById r4, r6, 2, 'tomorrowPriceQueryData'
+     27 GetById r6, r6, 3, 'yesterdayPriceQueryData'
+     33 LoadConstUndefined r1
+     35 StoreNPToEnvironment r5, 0, r1
+     39 StoreNPToEnvironment r5, 1, r1
+     43 StoreNPToEnvironment r5, 2, r1
+     47 StoreNPToEnvironment r5, 3, r1
+     51 LoadConstNull r2
+     53 Eq r3, r6, r2
+     57 LoadConstUndefined r7
+     59 JmpTrue @66, r3
+     62 GetByIndex r7, r6, 0
+     66 Eq r3, r4, r2
+     70 LoadConstUndefined r6
+     72 JmpTrue @79, r3
+     75 GetByIndex r6, r4, 0
+     79 Eq r3, r8, r2
+     83 LoadConstUndefined r4
+     85 JmpTrue @92, r3
+     88 GetByIndex r4, r8, 0
+     92 GetParentEnvironment r8, 0
+     95 JmpFalse @124, r7
+     98 JmpFalse @124, r4
+    101 LoadFromEnvironment r9, r8, 1
+    105 GetById r9, r9, 4, 'DayChoice'
+    111 GetById r9, r9, 5, 'Today'
+    117 JStrictEqualLong @302, r10, r9
+    124 LoadFromEnvironment r9, r8, 1
+    128 GetById r9, r9, 4, 'DayChoice'
+    134 GetById r9, r9, 6, 'Tomorrow'
+    140 JStrictNotEqual @150, r10, r9
+    144 JmpFalse @150, r4
+    147 JmpTrue @152, r6
+    150 Ret r1
+    152 LoadFromEnvironment r9, r8, 0
+    156 GetById r11, r9, 7, 'toFixedNumber'
+    162 GetById r10, r4, 8, 'price'
+    168 JNotEqual @174, r10, r2
+    172 LoadConstZero r10
+    174 Call2 r10, r11, r1, r10
+    179 StoreToEnvironment r5, 2, r10
+    183 GetById r9, r9, 7, 'toFixedNumber'
+    189 GetById r6, r6, 8, 'price'
+    195 JNotEqual @201, r6, r2
+    199 LoadConstZero r6
+    201 Call2 r6, r9, r1, r6
+    206 StoreToEnvironment r5, 3, r6
+    210 NewObjectWithBufferLong r6, 5293, 106471 {'beforeSixPrices': None, 'afterSixPrices': None}
+    220 GetGlobalObject r9
+    222 TryGetById r13, r9, 9, 'Array'
+    228 GetByIdShort r12, r13, 10, 'from'
+    233 TryGetById r10, r9, 9, 'Array'
+    239 LoadFromEnvironment r3, r8, 2
+    243 Call2 r11, r10, r1, r3
+    248 CreateClosure r10, r5, F57158<>
+    253 Call3 r10, r12, r13, r11, r10
+    259 PutOwnBySlotIdx r6, r10, 0
+    263 TryGetById r12, r9, 9, 'Array'
+    269 GetByIdShort r11, r12, 10, 'from'
+    274 TryGetById r9, r9, 9, 'Array'
+    280 Call2 r10, r9, r1, r3
+    285 CreateClosure r9, r5, F57159<>
+    290 Call3 r9, r11, r12, r10, r9
+    296 PutOwnBySlotIdx r6, r9, 1
+    300 Ret r6
+    302 LoadFromEnvironment r6, r8, 0
+    306 GetById r9, r6, 7, 'toFixedNumber'
+    312 GetById r7, r7, 8, 'price'
+    318 JNotEqual @324, r7, r2
+    322 LoadConstZero r7
+    324 Call2 r7, r9, r1, r7
+    329 StoreToEnvironment r5, 0, r7
+    333 GetById r6, r6, 7, 'toFixedNumber'
+    339 GetById r4, r4, 8, 'price'
+    345 JNotEqual @351, r4, r2
+    349 LoadConstZero r4
+    351 Call2 r4, r6, r1, r4
+    356 StoreToEnvironment r5, 1, r4
+    360 NewObjectWithBufferLong r4, 5293, 106471 {'beforeSixPrices': None, 'afterSixPrices': None}
+    370 GetGlobalObject r6
+    372 TryGetById r10, r6, 9, 'Array'
+    378 GetByIdShort r9, r10, 10, 'from'
+    383 TryGetById r7, r6, 9, 'Array'
+    389 LoadFromEnvironment r2, r8, 2
+    393 Call2 r8, r7, r1, r2
+    398 CreateClosure r7, r5, F57156<>
+    403 Call3 r7, r9, r10, r8, r7
+    409 PutOwnBySlotIdx r4, r7, 0
+    413 TryGetById r8, r6, 9, 'Array'
+    419 GetByIdShort r7, r8, 10, 'from'
+    424 TryGetById r6, r6, 9, 'Array'
+    430 Call2 r6, r6, r1, r2
+    435 CreateClosure r5, r5, F57157<>
+    440 Call3 r5, r7, r8, r6, r5
+    446 PutOwnBySlotIdx r4, r5, 1
+    450 Ret r4
+=== F41097 '' params=2 off=10934110 size=231
+      0 GetParentEnvironment r1, 0
+      3 LoadParam r2, 1
+      6 GetByIdShort r2, r2, 0, 'request'
+     11 LoadFromEnvironment r4, r1, 5
+     15 GetByIdShort r3, r2, 1, 'url'
+     20 LoadConstUndefined r0
+     22 Call2 r3, r4, r0, r3
+     27 LoadFromEnvironment r4, r1, 1
+     31 GetById r4, r4, 2, 'getSearchParams'
+     37 GetByIdShort r2, r2, 1, 'url'
+     42 Call2 r2, r4, r0, r2
+     47 GetByIdShort r6, r2, 3, 'date'
+     52 LoadConstString r2, 'electricity'
+     56 JStrictEqual @163, r2, r3
+     60 LoadConstString r2, 'gas'
+     64 JStrictEqual @95, r2, r3
+     68 LoadFromEnvironment r2, r1, 0
+     72 GetById r4, r2, 4, 'HttpResponse'
+     78 GetById r3, r4, 5, 'json'
+     84 NewArray r2, 0
+     88 Call2 r2, r3, r4, r2
+     93 Ret r2
+     95 LoadFromEnvironment r2, r1, 0
+     99 GetById r4, r2, 4, 'HttpResponse'
+    105 GetById r3, r4, 5, 'json'
+    111 LoadFromEnvironment r2, r1, 2
+    115 GetById r5, r2, 6, 'mockMarketPrices'
+    121 NewObjectWithBuffer r2, 6364, 16434 {'date': None}
+    127 PutOwnBySlotIdx r2, r6, 0
+    131 Call2 r5, r5, r0, r2
+    136 LoadFromEnvironment r2, r1, 3
+    140 GetById r2, r2, 7, 'MarketSegment'
+    146 GetById r2, r2, 8, 'Gas'
+    152 GetByVal r2, r5, r2
+    156 Call2 r2, r3, r4, r2
+    161 Ret r2
+    163 LoadFromEnvironment r2, r1, 0
+    167 GetById r3, r2, 4, 'HttpResponse'
+    173 GetById r2, r3, 5, 'json'
+    179 LoadFromEnvironment r4, r1, 2
+    183 GetById r5, r4, 6, 'mockMarketPrices'
+    189 NewObjectWithBuffer r4, 6364, 16434 {'date': None}
+    195 PutOwnBySlotIdx r4, r6, 0
+    199 Call2 r4, r5, r0, r4
+    204 LoadFromEnvironment r1, r1, 3
+    208 GetById r1, r1, 7, 'MarketSegment'
+    214 GetById r1, r1, 9, 'Electricity'
+    220 GetByVal r1, r4, r1
+    224 Call2 r1, r2, r3, r1
+    229 Ret r1
+=== F41099 'mockMarketPrices' params=2 off=10934341 size=105
+      0 LoadParam r0, 1
+      3 GetByIdShort r1, r0, 0, 'date'
+      8 NewObject r0
+     10 GetParentEnvironment r2, 0
+     13 LoadFromEnvironment r2, r2, 0
+     17 GetById r3, r2, 1, 'MarketSegment'
+     23 GetById r4, r3, 2, 'Electricity'
+     29 NewObjectWithBufferLong r5, 6365, 479703 {'endDate': None, 'price': 0.1, 'startDate': None, 'priceUnit': 'kWh'}
+     39 PutOwnBySlotIdx r5, r1, 0
+     43 PutOwnBySlotIdx r5, r1, 2
+     47 NewArray r3, 1
+     51 DefineOwnInDenseArray r3, r5, 0
+     55 DefineOwnByVal r0, r3, r4, 1
+     60 GetById r2, r2, 1, 'MarketSegment'
+     66 GetById r2, r2, 3, 'Gas'
+     72 NewObjectWithBufferLong r3, 6365, 479741 {'endDate': None, 'price': 0.2, 'startDate': None, 'priceUnit': 'm3'}
+     82 PutOwnBySlotIdx r3, r1, 0
+     86 PutOwnBySlotIdx r3, r1, 2
+     90 NewArray r1, 1
+     94 DefineOwnInDenseArray r1, r3, 0
+     98 DefineOwnByVal r0, r1, r2, 1
+    103 Ret r0
+=== F43591 'getV1AccountsAccountIdRates' params=4 off=11275545 size=77
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'agreementsMutator'
+     13 NewObjectWithBufferLong r2, 4230, 469744 {'url': None, 'method': 'GET', 'signal': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/rates'
+     40 LoadConstString r4, '/v1/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 3
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadConstUndefined r0
+     66 LoadParam r1, 2
+     69 Call3 r1, r3, r0, r2, r1
+     75 Ret r1
+=== F43945 'getInvoicesForAccount' params=5 off=11312315 size=84
+      0 GetParentEnvironment r1, 0
+      3 LoadFromEnvironment r1, r1, 2
+      7 GetById r3, r1, 0, 'billingMutator'
+     13 NewObjectWithBufferLong r2, 7219, 487880 {'url': None, 'method': 'GET', 'params': None, 'signal': None}
+     23 GetGlobalObject r1
+     25 TryGetById r1, r1, 1, 'HermesInternal'
+     31 GetByIdShort r6, r1, 2, 'concat'
+     36 LoadConstString r5, '/invoices'
+     40 LoadConstString r4, '/v1/accounts/'
+     44 LoadParam r1, 1
+     47 Call3 r1, r6, r4, r1, r5
+     53 PutOwnBySlotIdx r2, r1, 0
+     57 LoadParam r1, 2
+     60 PutOwnBySlotIdx r2, r1, 2
+     64 LoadParam r1, 4
+     67 PutOwnBySlotIdx r2, r1, 3
+     71 LoadConstUndefined r0
+     73 LoadParam r1, 3
+     76 Call3 r1, r3, r0, r2, r1
+     82 Ret r1
+=== F55370 'query' params=2 off=12654067 size=85
+      0 LoadParam r0, 1
+      3 GetByIdShort r12, r0, 0, 'date'
+      8 GetById r16, r0, 1, 'includeVAT'
+     14 GetById r20, r0, 2, 'organizationId'
+     20 GetById r18, r0, 3, 'connectionId'
+     26 GetById r14, r0, 4, 'includeExtraCosts'
+     32 NewObjectWithBufferLong r0, 3829, 106451 {'url': None, 'method': 'get'}
+     42 GetGlobalObject r1
+     44 TryGetById r1, r1, 5, 'HermesInternal'
+     50 GetByIdShort r6, r1, 6, 'concat'
+     55 LoadConstString r13, '&priceDate='
+     59 LoadConstString r15, '&includeExtraCosts='
+     63 LoadConstString r17, '/marketprices?includeVat='
+     67 LoadConstString r19, '/connections/'
+     71 LoadConstString r21, '/v1/p4/organizations/'
+     75 Call r1, r6, 10
+     79 PutOwnBySlotIdx r0, r1, 0
+     83 Ret r0
+
+# Additional evidence for requests corrected during live verification
+=== F3711 '' params=8 off=6906823 size=198
+      0 CreateFunctionEnvironment r2, 2
+      3 LoadParam r6, 6
+      6 GetGlobalObject r1
+      8 TryGetById r7, r1, 0, 'Object'
+     14 GetByIdShort r5, r7, 1, 'defineProperty'
+     19 LoadConstString r4, '__esModule'
+     23 NewObjectWithBufferLong r3, 25, 105839 {'value': True}
+     33 Call4 r3, r5, r7, r6, r4, r3
+     40 TryGetById r7, r1, 0, 'Object'
+     46 GetByIdShort r5, r7, 1, 'defineProperty'
+     51 NewObjectWithBufferLong r4, 28, 107886 {'enumerable': True, 'get': None}
+     61 CreateClosure r3, r2, F31450<get>
+     66 PutOwnBySlotIdx r4, r3, 1
+     70 LoadConstString r3, 'UsageMode'
+     74 Call4 r3, r5, r7, r6, r3, r4
+     81 TryGetById r5, r1, 0, 'Object'
+     87 GetByIdShort r4, r5, 1, 'defineProperty'
+     92 NewObjectWithBufferLong r3, 28, 107886 {'enumerable': True, 'get': None}
+    102 CreateClosure r1, r2, F31451<get>
+    107 PutOwnBySlotIdx r3, r1, 1
+    111 LoadConstString r1, 'UsageResolution'
+    115 Call4 r1, r4, r5, r6, r1, r3
+    122 NewObject r1
+    124 LoadConstString r3, 'Costs'
+    128 PutByIdStrict r1, r3, 0, 'Costs'
+    134 LoadConstString r3, 'Electricity'
+    138 PutByIdStrict r1, r3, 1, 'Electricity'
+    144 LoadConstString r3, 'Gas'
+    148 PutByIdStrict r1, r3, 2, 'Gas'
+    154 StoreToEnvironment r2, 0, r1
+    158 NewObject r1
+    160 LoadConstString r3, 'Hours'
+    164 PutByIdStrict r1, r3, 3, 'Hours'
+    170 LoadConstString r3, 'Days'
+    174 PutByIdStrict r1, r3, 4, 'Days'
+    180 LoadConstString r3, 'Months'
+    184 PutByIdStrict r1, r3, 5, 'Months'
+    190 StoreToEnvironment r2, 1, r1
+    194 LoadConstUndefined r0
+    196 Ret r0
+=== F4468 '' params=8 off=7252651 size=290
+      0 CreateFunctionEnvironment r2, 4
+      3 LoadParam r3, 2
+      6 LoadParam r8, 6
+      9 LoadParam r1, 7
+     12 GetGlobalObject r4
+     14 TryGetById r9, r4, 0, 'Object'
+     20 GetByIdShort r7, r9, 1, 'defineProperty'
+     25 LoadConstString r6, '__esModule'
+     29 NewObjectWithBufferLong r5, 25, 105839 {'value': True}
+     39 Call4 r5, r7, r9, r8, r6, r5
+     46 TryGetById r9, r4, 0, 'Object'
+     52 GetByIdShort r7, r9, 1, 'defineProperty'
+     57 NewObjectWithBufferLong r6, 28, 107886 {'enumerable': True, 'get': None}
+     67 CreateClosure r5, r2, F33544<get>
+     72 PutOwnBySlotIdx r6, r5, 1
+     76 LoadConstString r5, 'useGetInvoicesQuery'
+     80 Call4 r5, r7, r9, r8, r5, r6
+     87 TryGetById r7, r4, 0, 'Object'
+     93 GetByIdShort r6, r7, 1, 'defineProperty'
+     98 NewObjectWithBufferLong r5, 28, 107886 {'enumerable': True, 'get': None}
+    108 CreateClosure r4, r2, F33545<get>
+    113 PutOwnBySlotIdx r5, r4, 1
+    117 LoadConstString r4, 'generateInvoiceDownloadLink'
+    121 Call4 r4, r6, r7, r8, r4, r5
+    128 GetByIndex r4, r1, 0
+    132 LoadConstUndefined r0
+    134 Call2 r4, r3, r0, r4
+    139 StoreToEnvironment r2, 0, r4
+    143 GetByIndex r4, r1, 1
+    147 Call2 r4, r3, r0, r4
+    152 GetByIndex r1, r1, 2
+    156 Call2 r1, r3, r0, r1
+    161 GetById r3, r4, 2, 'InvoiceType'
+    167 GetById r5, r3, 3, 'AdvancePayment'
+    173 NewArray r3, 4
+    177 DefineOwnInDenseArray r3, r5, 0
+    181 GetById r5, r4, 2, 'InvoiceType'
+    187 GetById r5, r5, 4, 'Settlement'
+    193 DefineOwnInDenseArray r3, r5, 1
+    197 GetById r5, r4, 2, 'InvoiceType'
+    203 GetById r5, r5, 5, 'Purchase'
+    209 DefineOwnInDenseArray r3, r5, 2
+    213 GetById r4, r4, 2, 'InvoiceType'
+    219 GetById r4, r4, 6, 'Custom'
+    225 DefineOwnInDenseArray r3, r4, 3
+    229 StoreToEnvironment r2, 1, r3
+    233 GetById r4, r1, 7, 'vandebronApi'
+    239 GetById r3, r4, 8, 'injectEndpoints'
+    245 NewObjectWithBufferLong r1, 1202, 107837 {'endpoints': None, 'overrideExisting': True}
+    255 CreateClosure r5, r2, F33546<endpoints>
+    260 PutOwnBySlotIdx r1, r5, 0
+    264 Call2 r1, r3, r4, r1
+    269 GetById r1, r1, 9, 'useGetInvoicesQuery'
+    275 StoreToEnvironment r2, 2, r1
+    279 CreateClosure r1, r2, F33547<generateInvoiceDownloadLink>
+    284 StoreToEnvironment r2, 3, r1
+    288 Ret r0
+=== F31657 'formatApiDateRange' params=3 off=10075462 size=150
+      0 LoadParam r4, 1
+      3 Mov r7, r4
+      6 JmpTypeOfIs @40, r7, 507
+     14 GetGlobalObject r2
+     16 TryGetById r2, r2, 0, 'Date'
+     22 CreateThisForNew r3, r2, 1
+     26 Mov r10, r3
+     29 Mov r9, r4
+     32 Construct r2, r2, 2
+     36 SelectObject r7, r3, r2
+     40 LoadParam r4, 2
+     43 Mov r5, r4
+     46 JmpTypeOfIs @80, r5, 507
+     54 GetGlobalObject r2
+     56 TryGetById r2, r2, 0, 'Date'
+     62 CreateThisForNew r3, r2, 1
+     66 Mov r10, r3
+     69 Mov r9, r4
+     72 Construct r2, r2, 2
+     76 SelectObject r5, r3, r2
+     80 GetParentEnvironment r4, 0
+     83 LoadFromEnvironment r3, r4, 0
+     87 GetById r2, r3, 2, 'addDays'
+     93 LoadConstUInt8 r0, 1
+     96 LoadConstUndefined r1
+     98 Call3 r5, r2, r1, r5, r0
+    104 NewObjectWithBufferLong r2, 4616, 106471 {'startDate': None, 'endDate': None}
+    114 GetByIdShort r6, r3, 3, 'format'
+    119 LoadFromEnvironment r4, r4, 1
+    123 Call3 r6, r6, r1, r7, r4
+    129 PutOwnBySlotIdx r2, r6, 0
+    133 GetByIdShort r3, r3, 3, 'format'
+    138 Call3 r3, r3, r1, r5, r4
+    144 PutOwnBySlotIdx r2, r3, 1
+    148 Ret r2
+=== F55127 'query' params=2 off=12640876 size=60
+      0 LoadParam r0, 1
+      3 GetById r10, r0, 0, 'organizationId'
+      9 GetById r8, r0, 1, 'clusterId'
+     15 NewObjectWithBufferLong r0, 3829, 106451 {'url': None, 'method': 'get'}
+     25 GetGlobalObject r1
+     27 TryGetById r1, r1, 2, 'HermesInternal'
+     33 GetByIdShort r4, r1, 3, 'concat'
+     38 LoadConstString r7, '/contractDetails'
+     42 LoadConstString r9, '/shippingAddress/'
+     46 LoadConstString r11, '/v1/energyConsumers/'
+     50 Call r1, r4, 5
+     54 PutOwnBySlotIdx r0, r1, 0
+     58 Ret r0
+=== F55396 'query' params=2 off=12656818 size=203
+      0 GetParentEnvironment r3, 0
+      3 LoadParam r2, 1
+      6 GetById r15, r2, 0, 'organizationId'
+     12 GetById r7, r2, 1, 'connectionIds'
+     18 GetById r14, r2, 2, 'resolution'
+     24 GetById r5, r2, 3, 'startDate'
+     30 GetById r4, r2, 4, 'endDate'
+     36 GetById r13, r2, 5, 'includeEnergyTax'
+     42 LoadFromEnvironment r2, r3, 6
+     46 JmpTypeOfIs @62, r2, 128
+     54 LoadConstString r26, 'Trying to call a non-function'
+     58 CallBuiltin r2, 44, 2
+     62 LoadConstUndefined r0
+     64 JStrictNotEqual @84, r14, r0
+     68 LoadFromEnvironment r2, r3, 0
+     72 GetById r2, r2, 6, 'UsageResolution'
+     78 GetById r14, r2, 7, 'Days'
+     84 JStrictNotEqual @90, r13, r0
+     88 LoadConstTrue r13
+     90 NewObjectWithBufferLong r2, 3829, 469744 {'url': None, 'method': 'GET'}
+    100 GetByIdShort r6, r7, 8, 'toString'
+    105 Call1 r7, r6, r7
+    109 GetById r6, r7, 9, 'toUpperCase'
+    115 Call1 r24, r6, r7
+    119 LoadFromEnvironment r3, r3, 2
+    123 GetById r3, r3, 10, 'formatApiDateRange'
+    129 Call3 r3, r3, r0, r5, r4
+    135 GetById r20, r3, 3, 'startDate'
+    141 GetById r18, r3, 4, 'endDate'
+    147 GetGlobalObject r3
+    149 TryGetById r3, r3, 11, 'HermesInternal'
+    155 GetByIdShort r9, r3, 12, 'concat'
+    160 LoadConstString r17, '&includeEnergyTax='
+    164 LoadConstString r19, '&endDate='
+    168 LoadConstString r21, '&startDate='
+    172 LoadConstString r23, '&resolution='
+    176 LoadConstString r25, '/connections/costs?connectionIds='
+    180 LoadConstString r27, '/consumers/'
+    184 Mov r26, r15
+    187 Mov r22, r14
+    190 Mov r16, r13
+    193 Call r3, r9, 12
+    197 PutOwnBySlotIdx r2, r3, 0
+    201 Ret r2
+=== F55397 'query' params=2 off=12657021 size=238
+      0 GetParentEnvironment r3, 0
+      3 LoadParam r1, 1
+      6 GetById r10, r1, 0, 'organizationId'
+     12 GetById r9, r1, 1, 'connectionId'
+     18 GetById r5, r1, 2, 'startDate'
+     24 GetById r11, r1, 3, 'endDate'
+     30 GetById r8, r1, 4, 'resolution'
+     36 LoadConstUndefined r0
+     38 JStrictNotEqual @58, r8, r0
+     42 LoadFromEnvironment r1, r3, 0
+     46 GetById r1, r1, 5, 'UsageResolution'
+     52 GetById r8, r1, 6, 'Days'
+     58 LoadFromEnvironment r1, r3, 4
+     62 GetGlobalObject r2
+     64 TryGetById r4, r2, 7, 'Date'
+     70 CreateThisForNew r7, r4, 8
+     74 Mov r19, r7
+     77 Mov r18, r5
+     80 Construct r5, r4, 2
+     84 TryGetById r4, r2, 7, 'Date'
+     90 CreateThisForNew r6, r4, 8
+     94 Mov r19, r6
+     97 Mov r18, r11
+    100 Construct r4, r4, 2
+    104 JmpTypeOfIs @120, r1, 128
+    112 LoadConstString r18, 'Trying to call a non-function'
+    116 CallBuiltin r1, 44, 2
+    120 NewObjectWithBufferLong r1, 3829, 469744 {'url': None, 'method': 'GET'}
+    130 SelectObject r5, r7, r5
+    134 SelectObject r4, r6, r4
+    138 LoadFromEnvironment r3, r3, 2
+    142 GetById r3, r3, 9, 'formatApiDateRange'
+    148 Call3 r3, r3, r0, r5, r4
+    154 GetById r7, r3, 2, 'startDate'
+    160 GetById r6, r3, 3, 'endDate'
+    166 TryGetById r3, r2, 10, 'HermesInternal'
+    172 GetByIdShort r5, r3, 11, 'concat'
+    177 LoadConstString r4, '&endDate='
+    181 LoadConstString r3, 'startDate='
+    185 Call4 r12, r5, r3, r7, r4, r6
+    192 TryGetById r2, r2, 10, 'HermesInternal'
+    198 GetByIdShort r6, r2, 11, 'concat'
+    203 LoadConstString r13, '&'
+    207 LoadConstString r15, '/usage?resolution='
+    211 LoadConstString r17, '/connections/'
+    215 LoadConstString r19, '/consumers/'
+    219 Mov r18, r10
+    222 Mov r16, r9
+    225 Mov r14, r8
+    228 Call r2, r6, 8
+    232 PutOwnBySlotIdx r1, r2, 0
+    236 Ret r1
+=== F55426 'query' params=2 off=12659314 size=68
+      0 NewObjectWithBufferLong r0, 3829, 106451 {'url': None, 'method': 'get'}
+     10 GetParentEnvironment r1, 0
+     13 LoadFromEnvironment r3, r1, 1
+     17 GetByIdShort r2, r3, 0, 'join'
+     22 LoadConstString r1, ','
+     26 Call2 r5, r2, r3, r1
+     31 GetGlobalObject r1
+     33 TryGetById r1, r1, 1, 'HermesInternal'
+     39 GetByIdShort r4, r1, 2, 'concat'
+     44 LoadConstString r3, '/invoices?invoiceType='
+     48 LoadConstString r2, '/v1/organizations/'
+     52 LoadParam r1, 1
+     55 Call4 r1, r4, r2, r1, r3, r5
+     62 PutOwnBySlotIdx r0, r1, 0
+     66 Ret r0

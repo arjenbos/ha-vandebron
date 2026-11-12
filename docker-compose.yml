@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: ha-vandebron-dev
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:2026.11.1
     volumes:
       # Home Assistant config (generated on first run, git-ignored).
       - ./dev-config:/config

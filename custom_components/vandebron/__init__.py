@@ -5,7 +5,8 @@ from __future__ import annotations
 import time
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform
+from homeassistant.const import MAJOR_VERSION, MINOR_VERSION, Platform
+from homeassistant.exceptions import ConfigEntryError
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
@@ -15,7 +16,6 @@ from .const import (
     CONF_CUSTOMER_REFERENCE,
     CONF_EMAIL,
     CONF_REFRESH_TOKEN,
-    DOMAIN,
 )
 from .coordinator import VandebronCoordinator
 
@@ -26,6 +26,9 @@ type VandebronConfigEntry = ConfigEntry[VandebronCoordinator]
 
 async def async_setup_entry(hass: HomeAssistant, entry: VandebronConfigEntry) -> bool:
     """Set up Vandebron Thuis from a config entry."""
+    if (MAJOR_VERSION, MINOR_VERSION) < (2026, 11):
+        raise ConfigEntryError("Vandebron requires Home Assistant 2026.11 or later (Marketplace).")
+
     session = async_get_clientsession(hass)
     tokens = VandebronTokens(
         access_token=entry.data[CONF_ACCESS_TOKEN],
@@ -52,6 +55,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: VandebronConfigEntry) ->
     coordinator = VandebronCoordinator(hass, entry, api)
     await coordinator.async_config_entry_first_refresh()
 
+    from .migration import async_migrate_entities
+
+    async_migrate_entities(hass, entry.entry_id, coordinator.data)
     entry.runtime_data = coordinator
     entry.async_on_unload(entry.add_update_listener(_async_reload_entry))
 
@@ -66,4 +72,5 @@ async def async_unload_entry(hass: HomeAssistant, entry: VandebronConfigEntry) -
 
 async def _async_reload_entry(hass: HomeAssistant, entry: VandebronConfigEntry) -> None:
     """Reload when options change."""
-    await hass.config_entries.async_reload(entry.entry_id)
+    if dict(entry.options) != entry.runtime_data.options:
+        await hass.config_entries.async_reload(entry.entry_id)

@@ -8,3 +8,8 @@ dev-config/*
 
 __pycache__/
 *.pyc
+
+# Local development tools
+.venv/
+.pytest_cache/
+.ruff_cache/
